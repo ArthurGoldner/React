@@ -1,17 +1,43 @@
-import React , { Component } from "react"
-import Label from "./Label.js";
+import React, { Component }  from 'react';
 
+class MeuBtn extends Component {
+    render() {
+      return <button onClick={() => this.props.change(this.props.text)}> {this.props.text} </button>
+    }
+}
+class MeuTitulo extends Component {
+    render(){
+
+      return <h2> Você clicou no {this.props.title} </h2>
+    }
+}
 export default class App extends Component {
+    constructor(props){
+      super(props);
 
-  render(){
-    return (
-      <>
-        <h1> Hello Word! </h1>
-        <h2> Olá Mundo! </h2>
-        <Label nome ="Arthur"/>
-        <Label nome="DALE"/>
-      </>
-    );
-  }
+      this.state = {
+        btnAtual: ''
+      }
 
+    }
+
+    handleChange = (nome) => {
+      this.setState({
+        btnAtual: nome
+      })
+    }
+
+    render(){
+      return (
+        <>
+
+        <MeuTitulo title={this.state.btnAtual}/>
+        <h1> Hello Word </h1>
+        <MeuBtn change = {this.handleChange} text="Botão 01" />
+        <MeuBtn change = {this.handleChange} text="Botão 02" />
+        <MeuBtn change = {this.handleChange} text="Botão 03" />  
+
+        </>
+      )
+    }
 }
